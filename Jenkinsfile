@@ -7,19 +7,17 @@ pipeline {
                 echo 'Hello World'
             }
         }
-
-        stage('Run Linux Commands') {
+  stage('run linux command') {
             steps {
-                // Using a shell script block
-                sh '''
-                    date
-                    # Check if cal exists before running to avoid failure
-                    if command -v cal >/dev/null 2>&1; then
-                        cal
-                    else
-                        echo "cal command not found, skipping..."
-                    fi
-                '''
+                sh """
+                date
+                cal
+                """
+            }
+        }
+   stage('calling default env variable') {
+            steps {
+                sh 'echo $BUILD_ID'
             }
         }
     }
