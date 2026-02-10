@@ -7,12 +7,19 @@ pipeline {
                 echo 'Hello World'
             }
         }
-  stage('run linux command') {
+
+        stage('Run Linux Commands') {
             steps {
-                sh """
-                date
-                cal
-                """
+                // Using a shell script block
+                sh '''
+                    date
+                    # Check if cal exists before running to avoid failure
+                    if command -v cal >/dev/null 2>&1; then
+                        cal
+                    else
+                        echo "cal command not found, skipping..."
+                    fi
+                '''
             }
         }
     }
