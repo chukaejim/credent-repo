@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment { 
+        LOVE = 'chuka'
+    }
 
     stages {
         stage('Hello A') {
@@ -17,7 +20,8 @@ pipeline {
         }
    stage('calling default env variable') {
             steps {
-                sh 'echo $BUILD_ID'
+                sh 'echo My build number id is $BUILD_ID'
+                sh 'echo mMy real name is Ejim $LOVE'
             }
         }
     }
